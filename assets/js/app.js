@@ -120,7 +120,7 @@ function makeResponsive() {
 
         var toolTip = d3.tip()
             .attr("class", "d3-tip")
-            .offset([80, -60])
+            .offset([70, 70])
             .html(function(d) {
                 
                 return (`${d.abbr}<br>${xLabel} ${d[chosenXAxis]}<br>${yLabel} ${d[chosenYAxis]}`);
@@ -179,13 +179,25 @@ function makeResponsive() {
             .append("circle")
             .attr("cx", d => xLinearScale(d[chosenXAxis]))
             .attr("cy", d => yLinearScale(d[chosenYAxis]))
-            .attr("r", 20)
-            .attr("fill", "purple")
+            .attr("r", 10)
+            .attr("fill", "red")
             .attr("opacity", ".5");
+
+        // Create a group for the text in circles
+        var circleText = chartGroup.selectAll(".stateText")
+            .data(healthData)
+            .enter()
+            .append("text")
+            .text(d => d.abbr)
+            .attr("class", "stateText")
+            .attr("x", d => xLinearScale(d[chosenXAxis]))
+            .attr("y", d => yLinearScale(d[chosenYAxis]*.98))
+            .attr("font-size", "10px")
+            .style("font-weight", "bold");
 
         // Create group for three x-axis labels
         var xLabelsGroup = chartGroup.append("g")
-            .attr("transform", `translate(${width / 3}, ${height + 20})`);
+            .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
         var povertyLabel = xLabelsGroup.append("text")
             .attr("x", 0)
@@ -210,12 +222,12 @@ function makeResponsive() {
 
         // Create group for three y-axis labels
         var yLabelsGroup = chartGroup.append("g")
-            .attr("transform", `translate(${width / 3}, ${height + 20})`);
+            .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
         var healthcareLabel = yLabelsGroup.append("text")
             .attr("transform", "rotate(-90)")
             .attr("x", - margin.left)
-            .attr("y", 0 - (height / 3))
+            .attr("y", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("value", "healthcare") // value to grab for event listener
             .classed("axis-text", true)
@@ -225,7 +237,7 @@ function makeResponsive() {
         var smokesLabel = yLabelsGroup.append("text")
             .attr("transform", "rotate(-90)")
             .attr("x", - margin.left)
-            .attr("y", 0 - (height / 3))
+            .attr("y", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("value", "smokes") // value to grab for event listener
             .classed("axis-text", true)
@@ -235,7 +247,7 @@ function makeResponsive() {
         var obesityLabel = yLabelsGroup.append("text")
             .attr("transform", "rotate(-90)")  
             .attr("x", - margin.left)
-            .attr("y", 0 - (height / 3))
+            .attr("y", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("value", "obesity") // value to grab for event listener
             .classed("axis-text", true)
@@ -243,7 +255,7 @@ function makeResponsive() {
             .text("Obesity (%)");
 
         // updateToolTip function above csv import
-        var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);    
+        var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, circleText);    
 
         // X axis labels event listener
         xLabelsGroup.selectAll("text")
@@ -262,11 +274,14 @@ function makeResponsive() {
                     // Update x axis with transition
                     xAxis = renderAxes(xLinearScale, xAxis);
 
-                    // Update circles with new x values
+                    // Update circles with new values
                     circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
+                    // Update text with new values
+                    circleText = renderText(circleText, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+
                     // Update tooltips with new info
-                    circlesGroup = updateToolTip(chosenXAxis, circlesGroup, chosenYAxis);
+                    circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, circleText);
 
                     // Changes classes to change bold text for x axis
                     if (chosenXAxis === "poverty") {
