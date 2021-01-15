@@ -18,7 +18,7 @@ function makeResponsive() {
     // Create an SVG wrapper, append an SVG group that will hold our chart,
     // and shift the latter by left and top margins.
     var svg = d3
-        .select(".scatter")
+        .select("#scatter")
         .append("svg")
         .attr("width", svgWidth)
         .attr("height", svgHeight);
@@ -124,7 +124,7 @@ function makeResponsive() {
             .html(function(d) {
                 
                 return (`${d.abbr}<br>${xLabel} ${d[chosenXAxis]}<br>${yLabel} ${d[chosenYAxis]}`);
-        });
+            });
 
         circlesGroup.call(toolTip);
 
@@ -243,7 +243,7 @@ function makeResponsive() {
             .text("Obesity (%)");
 
         // updateToolTip function above csv import
-        var circlesGroup = updateToolTip(chosenXAxis, circlesGroup, chosenYAxis);
+        var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);    
 
         // X axis labels event listener
         xLabelsGroup.selectAll("text")
