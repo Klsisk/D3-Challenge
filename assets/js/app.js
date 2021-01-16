@@ -215,7 +215,7 @@ function makeResponsive() {
     
         var incomeLabel = xLabelsGroup.append("text")
             .attr("x", 0)
-            .attr("y", 40)
+            .attr("y", 60)
             .attr("value", "income") // value to grab for event listener
             .classed("inactive", true)
             .text("Household Income (Median)");
@@ -226,8 +226,8 @@ function makeResponsive() {
 
         var healthcareLabel = yLabelsGroup.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("x", - margin.left)
-            .attr("y", 0 - (height / 2))
+            .attr("x", 250)
+            .attr("y", -465)
             .attr("dy", "1em")
             .attr("value", "healthcare") // value to grab for event listener
             .classed("axis-text", true)
@@ -236,8 +236,8 @@ function makeResponsive() {
 
         var smokesLabel = yLabelsGroup.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("x", - margin.left)
-            .attr("y", 0 - (height / 2))
+            .attr("x", 250)
+            .attr("y", -485)
             .attr("dy", "1em")
             .attr("value", "smokes") // value to grab for event listener
             .classed("axis-text", true)
@@ -246,8 +246,8 @@ function makeResponsive() {
   
         var obesityLabel = yLabelsGroup.append("text")
             .attr("transform", "rotate(-90)")  
-            .attr("x", - margin.left)
-            .attr("y", 0 - (height / 2))
+            .attr("x", 250)
+            .attr("y", -505)
             .attr("dy", "1em")
             .attr("value", "obesity") // value to grab for event listener
             .classed("axis-text", true)
