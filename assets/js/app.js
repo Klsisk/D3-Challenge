@@ -13,11 +13,11 @@ var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart,
 // and shift the latter by left and top margins.
-var svg = d3
-    .select("#scatter")
+var svg = d3.select("#scatter")
     .append("svg")
     .attr("width", svgWidth)
-    .attr("height", svgHeight);
+    .attr("height", svgHeight)
+    .classed('chart', true);
 
 // Append an SVG group
 var chartGroup = svg.append("g")
@@ -94,7 +94,8 @@ function renderText(circleText, newXScale, chosenXAxis, newYScale, chosenYAxis) 
     circleText.transition()
         .duration(1000)
         .attr("cx", d => newXScale(d[chosenXAxis]))
-        .attr("cy", d => newYScale(d[chosenYAxis]));
+        .attr("cy", d => newYScale(d[chosenYAxis]))
+        .attr("text-anchor", "middle");
 
     return circleText;
 }
@@ -209,12 +210,13 @@ d3.csv("assets/data/data.csv").then(function(healthData, err) {
         .data(healthData)
         .enter()
         .append("text")
-        .text(d => d.abbr)
         .attr("class", "stateText")
         .attr("x", d => xLinearScale(d[chosenXAxis]))
         .attr("y", d => yLinearScale(d[chosenYAxis]*.98))
-        .attr("font-size", "10px")
-        .style("font-weight", "bold");
+        .attr("font-size", "12px")
+        .attr("dy", ".3em")
+        .style("font-weight", "bold")
+        .text(function(d){return d.abbr});
 
     // Create group for three x-axis labels
     var xLabelsGroup = chartGroup.append("g")
