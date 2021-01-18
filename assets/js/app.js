@@ -88,6 +88,17 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis, newYScale, chosenYA
     return circlesGroup;
 }
 
+// Function used for updating circles group with a transition to new circles
+function renderText(circleText, newXScale, chosenXAxis, newYScale, chosenYAxis) {
+    
+    circleText.transition()
+        .duration(1000)
+        .attr("cx", d => newXScale(d[chosenXAxis]))
+        .attr("cy", d => newYScale(d[chosenYAxis]));
+
+    return circleText;
+}
+
 // Function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     var xLabel;
@@ -121,7 +132,8 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
                 
             return (`${d.abbr}<br>${xLabel} ${d[chosenXAxis]}<br>${yLabel} ${d[chosenYAxis]}`);
         });
-
+    
+    // Circles tooltip in chart
     circlesGroup.call(toolTip);
 
     circlesGroup.on("mouseover", function(data) {
@@ -132,8 +144,21 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         toolTip.hide(data);
     });
 
+    // Text tooltip in chart
+    circleText.call(toolTip);
+
+    circleText.on("mouseover", function(data) {
+        toolTip.show(data, this);
+    })
+    // .on(mouseout) event
+    .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+    });
+
     return circlesGroup;
 }
+
+// Text tooltip in chart
 
 // Retrieve data from the CSV file and execute everything below
 d3.csv("assets/data/data.csv").then(function(healthData, err) {
