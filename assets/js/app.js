@@ -100,7 +100,7 @@ function renderText(circleText, newXScale, chosenXAxis, newYScale, chosenYAxis) 
 }
 
 // Function used for updating circles group with new tooltip
-function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
+function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, circleText) {
     var xLabel;
 
     if (chosenXAxis === "poverty") {
