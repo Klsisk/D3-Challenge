@@ -193,7 +193,7 @@ d3.csv("assets/data/data.csv").then(function(healthData, err) {
         .classed("y-axis", true)
         .call(leftAxis);
 
-    // Append initial circles
+    // Create and then append initial circles
     var circlesGroup = chartGroup.selectAll(".stateCircle")
         .data(healthData)
         .enter()
@@ -361,8 +361,11 @@ d3.csv("assets/data/data.csv").then(function(healthData, err) {
                 // Update circles with new x values
                 circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
+                // Update text with new values
+                circleText = renderText(circleText, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis); 
+
                 // Update tooltips with new info
-                circlesGroup = updateToolTip(chosenXAxis, circlesGroup, chosenYAxis);
+                circlesGroup = updateToolTip(chosenXAxis, circlesGroup, chosenYAxis, circleText);
 
             // Changes classes to change bold text for y axis
             if (chosenYAxis === "healthcare") {
