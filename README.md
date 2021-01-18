@@ -6,8 +6,7 @@ Utilizing information from the U.S. Census Bureau and the Behavioral Risk Factor
 
 The data set included is based on 2014 ACS 1-year estimates: https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml. The current data set incldes data on rates of income, obesity, poverty, etc. by state. MOE stands for "margin of error."
 
-##Objectives
-
+## Task
 ### Required: D3 Dabbler
 Create a scatter plot between two of the data variables such as Healthcare vs. Poverty or Smokers vs. Age
 
