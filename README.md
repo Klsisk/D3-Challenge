@@ -1,6 +1,6 @@
 # D3 Homework - Data Journalism and D3
 
-(klsisk.github.io/d3-challenge/)
+(https://klsisk.github.io/d3-challenge/)
 
 ## Background
 
