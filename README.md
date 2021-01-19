@@ -1,6 +1,6 @@
 # D3 : Data Journalism and D3
 
-### (klsisk.github.io/d3-challenge/)
+### (https://klsisk.github.io/d3-challenge/)
 
 ## Background
 Utilizing information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System, create charts, graphs and interactive visualizations to help understand findings
@@ -21,8 +21,6 @@ Include more demographics and more risk factors. Place additional labels in the 
 
 2. Incorporate d3-tip
 While the ticks on the axes allow us to infer approximate values for each circle, it's impossible to determine the true value without adding another layer of data. Enter tooltips: developers can implement these in their D3 graphics to reveal a specific element's data when the user hovers their cursor over the element. Add tooltips to your circles and display each tooltip with the data that the user has selected.
-
-![image](https://user-images.githubusercontent.com/69765842/104986167-7d05a380-59e0-11eb-9331-dabc01dc1579.png)
 
 ![image](https://user-images.githubusercontent.com/69765842/104986251-a7576100-59e0-11eb-922c-8e0a58e9bc10.png)
 
