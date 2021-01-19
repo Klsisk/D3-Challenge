@@ -93,8 +93,8 @@ function renderText(circleText, newXScale, chosenXAxis, newYScale, chosenYAxis) 
     
     circleText.transition()
         .duration(1000)
-        .attr("cx", d => newXScale(d[chosenXAxis]))
-        .attr("cy", d => newYScale(d[chosenYAxis]))
+        .attr("x", d => newXScale(d[chosenXAxis]))
+        .attr("y", d => newYScale(d[chosenYAxis]))
         .attr("text-anchor", "middle");
 
     return circleText;
@@ -351,13 +351,13 @@ d3.csv("assets/data/data.csv").then(function(healthData, err) {
             var value = d3.select(this).attr("value");
             if (value !== chosenYAxis) {
                 
-                // Replace chosenXAxis with value
+                // Replace chosenYAxis with value
                 chosenYAxis = value;
 
-                // Updates x scale for new data
+                // Updates y scale for new data
                 yLinearScale = yScale(healthData, chosenYAxis);
 
-                // Update x axis with transition
+                // Update y axis with transition
                 yAxis = renderYAxes(yLinearScale, yAxis);
 
                 // Update circles with new x values
