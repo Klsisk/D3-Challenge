@@ -1,6 +1,6 @@
 # D3 : Data Journalism and D3
 
-[Link to D3 Challenge Results](https://klsisk.github.io/d3-challenge/)
+### (https://klsisk.github.io/d3-challenge/)
 
 ## Background
 
