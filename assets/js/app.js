@@ -13,12 +13,14 @@ var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart,
 // and shift the latter by left and top margins.
-var svg = d3.select("#scatter")
-    .append("svg")
-    .attr("width", svgWidth)
-    .attr("height", svgHeight)
+var chart= d3.select("#scatter")
+    .append('div')
     .classed('chart', true);
 
+var svg = chart.append("svg")
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
+    
 // Append an SVG group
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -160,7 +162,6 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, circleText) {
 }
 
 // Text tooltip in chart
-
 // Retrieve data from the CSV file and execute everything below
 d3.csv("assets/data/data.csv").then(function(healthData, err) {
     if (err) throw err;
@@ -201,9 +202,9 @@ d3.csv("assets/data/data.csv").then(function(healthData, err) {
         .append("circle")
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
-        .attr("r", 10)
+        .attr("r", 15)
         .attr("fill", "red")
-        .attr("opacity", ".5");
+        .attr("opacity", ".75");
 
     // Create a group for the text in circles
     var circleText = chartGroup.selectAll(".stateText")
