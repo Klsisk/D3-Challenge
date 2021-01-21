@@ -129,8 +129,8 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, circleText) {
     }
 
     var toolTip = d3.tip()
-        .attr("class", "d3-tip")
-        .offset([70, 70])
+        .attr("class", "tooltip d3-tip")
+        .offset([80, 80])
         .html(function(d) {
                 
             return (`${d.abbr}<br>${xLabel} ${d[chosenXAxis]}<br>${yLabel} ${d[chosenYAxis]}`);
@@ -200,10 +200,10 @@ d3.csv("assets/data/data.csv").then(function(healthData, err) {
         .data(healthData)
         .enter()
         .append("circle")
+        .attr("class", "stateCircle")
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
         .attr("r", 15)
-        .attr("fill", "red")
         .attr("opacity", ".75");
 
     // Create a group for the text in circles
